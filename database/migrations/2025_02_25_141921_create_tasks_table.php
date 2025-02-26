@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('deadline');
             $table->string('status')->default('open');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

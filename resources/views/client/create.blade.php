@@ -1,0 +1,79 @@
+<x-app-layout>
+    <x-pages.header :title="'Add New Client'" />
+
+    <form action="{{ route('client.store') }}" method="post" class="max-w-full md:max-w-4xl mx-auto mt-12">
+        @csrf
+
+        <div class="max-w-full mb-5">
+            <label for="contact_name" class="block text-sm font-medium mb-2 dark:text-white">Contact name</label>
+            <input type="text" id="contact_name" name="contact_name" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Wile E. Coyote">
+            @error('contact_name')
+                <p class="text-red-500 mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="max-w-full mb-5">
+            <label for="contact_email" class="block text-sm font-medium mb-2 dark:text-white">Contact email</label>
+            <input type="email" id="contact_email" name="contact_email" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="wile.coyote@acme-co.com">
+            @error('contact_email')
+                <p class="text-red-500 mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="max-w-full mb-5">
+            <label for="contact_phone_number" class="block text-sm font-medium mb-2 dark:text-white">Contact phone</label>
+            <input type="text" id="contact_phone_number" name="contact_phone_number" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="123-456">
+            @error('contact_phone_number')
+                <p class="text-red-500 mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="grid grid-cols-2 gap-5">
+            <div class="max-w-full mb-5">
+                <label for="company_name" class="block text-sm font-medium mb-2 dark:text-white">Company name</label>
+                <input type="text" id="company_name" name="company_name" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Acme Corporation">
+                @error('company_name')
+                    <p class="text-red-500 mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="max-w-full mb-5">
+                <label for="company_vat" class="block text-sm font-medium mb-2 dark:text-white">Company vat</label>
+                <input type="text" id="company_vat" name="company_vat" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="12345678">
+                @error('company_vat')
+                    <p class="text-red-500 mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-5">
+            <div class="max-w-full mb-5">
+                <label for="company_zip" class="block text-sm font-medium mb-2 dark:text-white">Company zip</label>
+                <input type="text" id="company_zip" name="company_zip" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="123456">
+                @error('company_zip')
+                    <p class="text-red-500 mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="max-w-full mb-5">
+                <label for="company_city" class="block text-sm font-medium mb-2 dark:text-white">Company city</label>
+                <input type="text" id="company_city" name="company_city" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Budapest">
+                @error('company_city')
+                    <p class="text-red-500 mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="col-span-2 max-w-full mb-5">
+                <label for="company_address" class="block text-sm font-medium mb-2 dark:text-white">Company address</label>
+                <input type="text" id="company_address" name="company_address" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="M Street 145">
+                @error('company_address')
+                    <p class="text-red-500 mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
+        <button type="submit" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+            Save
+        </button>
+
+    </form>
+
+</x-app-layout>

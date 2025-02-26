@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Client;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +21,18 @@ class ProjectFactory extends Factory
         return [
             'title' => fake()->words(5, true),
             'description' => fake()->paragraph(25),
-            'deadline' => fake()
+            'user_id' => User::all()->random(),
+            'client_id' => Client::all()->random(),
+            'deadline' => fake()->dateTimeBetween('-1 week', '+1 week'),
         ];
+    }
+
+    public function statusclose(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 'close',
+            ];
+        });
     }
 }

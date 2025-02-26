@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('company_zip');
             $table->integer('company_vat');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

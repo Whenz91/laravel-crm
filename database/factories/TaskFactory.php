@@ -17,7 +17,18 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->words(5, true),
+            'description' => fake()->paragraph(25),
+            'deadline' => fake()->dateTimeBetween('-1 week', '+1 week'),
         ];
+    }
+
+    public function statusclose(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'status' => 'close',
+            ];
+        });
     }
 }

@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite('resources/js/app.js')
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
@@ -28,7 +29,7 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="container mx-auto pb-10">
                 {{ $slot }}
             </main>
         </div>
