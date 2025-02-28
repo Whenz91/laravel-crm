@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,15 @@ Route::middleware('auth')->group(function () {
         'edit' => 'client.edit',
         'update' => 'client.update',
         'destroy' => 'client.destroy'
+    ]);
+    Route::resource('projects', ProjectController::class)->names([
+        'index' => 'project',
+        'show' => 'project.show',
+        'create' => 'project.create',
+        'store' =>  'project.store',
+        'edit' => 'project.edit',
+        'update' => 'project.update',
+        'destroy' => 'project.destroy'
     ]);
 });
 

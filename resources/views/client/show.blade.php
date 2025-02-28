@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-pages.header :title="$client->company_name" />
+    <x-pages.header :title="$client->company_name" :backUrl="route('client')" />
 
     <div class="grid grid-cols-2 gap-4 mt-12">
         <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
