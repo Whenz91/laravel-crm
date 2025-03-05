@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Project;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class ProjectPolicy
+class TaskPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class ProjectPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Project $project): bool
+    public function view(User $user, Task $task): bool
     {
         return true;
     }
@@ -39,14 +39,14 @@ class ProjectPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Project $project): bool
+    public function update(User $user, Task $task): bool
     {
-        if ($user->can('manage projects')) {
+        if ($user->can('manage tasks')) {
             return true;
         }
 
-        if ($user->can('edit own projects')) {
-            return $user->id == $project->user_id;
+        if ($user->can('edit own tasks')) {
+            return $user->id == $task->user_id;
         }
 
         return false;
@@ -55,14 +55,14 @@ class ProjectPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Project $project): bool
+    public function delete(User $user, Task $task): bool
     {
-        if ($user->can('manage projects')) {
+        if ($user->can('manage tasks')) {
             return true;
         }
 
-        if ($user->can('delete own projects')) {
-            return $user->id == $project->user_id;
+        if ($user->can('delete own tasks')) {
+            return $user->id == $task->user_id;
         }
 
         return false;
@@ -71,9 +71,9 @@ class ProjectPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Project $project): bool
+    public function restore(User $user, Task $task): bool
     {
-        if ($user->can('manage projects')) {
+        if ($user->can('manage tasks')) {
             return true;
         }
 
@@ -83,9 +83,9 @@ class ProjectPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Project $project): bool
+    public function forceDelete(User $user, Task $task): bool
     {
-        if ($user->can('manage projects')) {
+        if ($user->can('manage tasks')) {
             return true;
         }
 

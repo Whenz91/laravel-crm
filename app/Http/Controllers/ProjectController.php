@@ -22,7 +22,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::with(['user', 'client'])->orderBy('created_at', 'desc')->paginate(5);
+        $projects = Project::with(['user', 'client'])->paginate(5);
 
         return view('project/index', compact('projects'));
     }
@@ -44,6 +44,7 @@ class ProjectController extends Controller
     public function store(ProjectCreateRequest $request)
     {
         $validated = $request->validated();
+        $validated['status'] = $request->boolean('status');
 
         Project::create($validated);
 
@@ -68,7 +69,7 @@ class ProjectController extends Controller
         $users = User::all();
         $clients = Client::all();
 
-        return view('projct/edit', compact(['users', 'clients', 'project']));
+        return view('project/edit', compact(['users', 'clients', 'project']));
     }
 
     /**
@@ -77,6 +78,8 @@ class ProjectController extends Controller
     public function update(ProjectUpdateRequest $request, Project $project)
     {
         $validated = $request->validated();
+
+        $validated['status'] = $request->boolean('status');
 
         $project->update($validated);
 

@@ -24,7 +24,7 @@ class ProjectCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'description' => 'max:500',
+            'description' => 'max:5000',
             'user_id' => 'required',
             'client_id' => 'required',
             'deadline' => 'required|date|after:now',

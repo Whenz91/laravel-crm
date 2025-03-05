@@ -1,7 +1,7 @@
 <x-app-layout>
-    <x-pages.header :title="'Add New Project'" :backUrl="route('project')" />
+    <x-pages.header :title="'Add New Task'" :backUrl="route('task')" />
 
-    <form action="{{ route('project.store') }}" method="post" class="max-w-full md:max-w-4xl mx-auto mt-12">
+    <form action="{{ route('task.store') }}" method="post" class="max-w-full md:max-w-4xl mx-auto mt-12">
         @csrf
 
         <div class="max-w-full mb-5">
@@ -23,9 +23,9 @@
         <div class="max-w-full mb-5">
             <label for="user" class="block text-sm font-medium mb-2 dark:text-white">User*</label>
             <select name="user_id" id="user" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                <option selected="">Select user</option>
+                <option {{ old('user_id') ? '' : 'selected' }}>Select user</option>
                 @foreach($users as $user)
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                <option value="{{ $user->id }}" {{  old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                 @endforeach
             </select>
             @error('user_id')
@@ -36,12 +36,25 @@
         <div class="max-w-full mb-5">
             <label for="client" class="block text-sm font-medium mb-2 dark:text-white">Client*</label>
             <select name="client_id" id="client" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                <option selected="">Select client</option>
+                <option {{ old('client_id') ? '' : 'selected' }}>Select client</option>
                 @foreach($clients as $client)
-                <option value="{{ $client->id }}">{{ $client->company_name }}</option>
+                <option value="{{ $client->id }}" {{  old('client_id') == $client->id ? 'selected' : '' }}>{{ $client->company_name }}</option>
                 @endforeach
             </select>
             @error('client_id')
+                <p class="text-red-500 mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="max-w-full mb-5">
+            <label for="project" class="block text-sm font-medium mb-2 dark:text-white">Project*</label>
+            <select name="project_id" id="project" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                <option {{ old('project_id') ? '' : 'selected' }}>Select project</option>
+                @foreach($projects as $project)
+                <option value="{{ $project->id }}" {{  old('project_id') == $project->id ? 'selected' : '' }}>{{ $project->title }}</option>
+                @endforeach
+            </select>
+            @error('project_id')
                 <p class="text-red-500 mt-2">{{ $message }}</p>
             @enderror
         </div>
