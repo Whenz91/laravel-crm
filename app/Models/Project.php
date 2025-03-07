@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ProjectCreated;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Scopes\DescOrderByCreatedAtScope;
@@ -23,6 +24,10 @@ class Project extends Model
         'client_id',
         'deadline',
         'status'
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => ProjectCreated::class,
     ];
 
     public function user(): BelongsTo
