@@ -25,5 +25,5 @@ Route::post('/login', [AuthApiController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthApiController::class, 'logout']);
     
-    Route::resource('/projects', ProjectApiController::class);
+    Route::apiResource('/projects', ProjectApiController::class);
 });

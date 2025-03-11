@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProjectResource;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Http\Resources\ProjectResource;
+use App\Http\Requests\Project\ProjectCreateRequest;
+use App\Http\Requests\Project\ProjectApiUpdateRequest;
 
 class ProjectApiController extends Controller
 {
@@ -21,9 +23,16 @@ class ProjectApiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProjectCreateRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $validated['status'] = $request->boolean('status');
+
+        Project::create($validated);
+
+        return response()->json([
+            'message' => 'Item successfully created!'
+        ], 201);
     }
 
     /**
@@ -38,9 +47,16 @@ class ProjectApiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(ProjectApiUpdateRequest $request, Project $project)
     {
-        //
+        $validated = $request->validated();
+        $validated['status'] = $request->boolean('status');
+
+        $project->update($validated);
+
+        return response()->json([
+            'message' => 'Item successfully updated!'
+        ]);
     }
 
     /**
@@ -48,6 +64,11 @@ class ProjectApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->delete();
+
+        return response()->json([
+            'message' => 'Item successfully deleted!'
+        ]);
     }
 }
